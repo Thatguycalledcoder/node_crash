@@ -12,6 +12,15 @@ const server = http.createServer(async (req, res) => {
         case ".txt":
             content_type = "text/plain";
             break;
+        case ".css":
+            content_type = "text/css";
+            break;
+        case ".js":
+            content_type = "text/javascript";
+            break;
+        case ".json":
+            content_type = "application/json";
+            break;
         default:
             break;
     }
@@ -35,4 +44,11 @@ const server = http.createServer(async (req, res) => {
         res.write(content);
         res.end();
     }
+});
+
+const PORT = 8080;
+const HOSTNAME = "localhost";
+
+server.listen(PORT, HOSTNAME, () => {
+    console.log(`Started server. Listening at http://${HOSTNAME}:${PORT}`);
 });
