@@ -4,9 +4,13 @@ const fs = require('fs/promises');
 
 const server = http.createServer(async (req, res) => {
     const filename = (req.url === "/" ? "index.html" : req.url);
-    const filepath = path.join(__dirname, "public", filename);
+    let filepath = path.join(__dirname, "public", filename);
     let content_type = "text/html";
-    const extension = path.extname(filename);
+    let extension = path.extname(filename);
+    if (extension === "") {
+        extension = ".html";
+        filepath += extension;
+    }
 
     switch (extension) {
         case ".txt":
